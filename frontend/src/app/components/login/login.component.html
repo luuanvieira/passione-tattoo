@@ -1,0 +1,66 @@
+<div class="login-page flex min-h-screen w-full items-center justify-center bg-cover bg-center px-4 py-10"
+  style="background-image: url('images/Header-Background.png');">
+  <div class="login-glow"></div>
+
+  <div class="relative w-full max-w-[420px] rounded-3xl border border-white/10 bg-[rgba(0,0,0,0.6)] p-8 shadow-2xl backdrop-blur-md sm:p-10">
+    <div class="mb-8 flex items-center justify-between gap-6">
+      <div>
+        <p class="mb-1 text-[11px] font-bold tracking-[0.25em] text-pink-400 uppercase">Área do estúdio</p>
+        <h1 class="font-orbitron text-4xl text-white">Login</h1>
+      </div>
+      <img src="images/Logo-Cor.png" alt="Logo" class="logo-glow h-auto w-24 object-contain" />
+    </div>
+
+    <form (ngSubmit)="onSubmit()" class="space-y-4">
+      <label class="block">
+        <span class="mb-1.5 block text-xs font-semibold tracking-wider text-gray-300 uppercase">E-mail</span>
+        <input
+          type="text"
+          placeholder="seu@email.com"
+          [(ngModel)]="username"
+          name="username"
+          class="login-input"
+        />
+      </label>
+      <label class="block">
+        <span class="mb-1.5 block text-xs font-semibold tracking-wider text-gray-300 uppercase">Senha</span>
+        <input
+          type="password"
+          placeholder="••••••••"
+          [(ngModel)]="password"
+          name="password"
+          class="login-input"
+        />
+      </label>
+
+      <div class="text-left text-sm text-pink-400">
+        <label class="flex cursor-pointer items-center gap-2">
+          <input
+            type="checkbox"
+            [(ngModel)]="manterConectado"
+            name="manterConectado"
+            class="form-checkbox h-4 w-4 accent-[#d23e8e]"
+          />
+          Mantenha-me conectado
+        </label>
+      </div>
+
+      <div class="pt-2">
+        <button
+          type="submit"
+          [disabled]="isLoading"
+          class="flex w-full items-center justify-center gap-2 rounded-full bg-brand px-4 py-3 font-bold tracking-wider text-white shadow-[0_10px_30px_rgba(210,62,142,0.35)] transition hover:bg-brand-dark disabled:cursor-not-allowed disabled:bg-pink-300"
+        >
+          <span *ngIf="!isLoading">Entrar</span>
+          <span *ngIf="isLoading" class="flex items-center gap-2">
+            <svg class="h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" class="opacity-25"></circle>
+              <path d="M22 12a10 10 0 0 0-10-10" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
+            </svg>
+            Entrando...
+          </span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+/* Identidade Passione: rosa da caveira, fundo grafite e a fonte Ortland */
+@theme {
+  --color-brand: #d23e8e;
+  --color-brand-dark: #b02f74;
+  --color-brand-light: #f06bb3;
+  --color-coal: #272727;
+  --color-ink: #161617;
+  --font-display: 'Ortland', sans-serif;
+}
+
+@font-face {
+  font-family: 'Ortland';
+  src: url('./fonts/Ortland-Regular.woff2') format('woff2'),
+       url('./fonts/Ortland-Regular.woff') format('woff');
+  font-display: swap;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #161617;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: #d23e8e;
+  color: #fff;
+}

@@ -1,0 +1,314 @@
+.gray-custom {
+  background-color: #272727;
+}
+
+.wall {
+  background-image: url('./../../../public/images/Header-Background.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.headline {
+  font-family: 'Ortland', sans-serif;
+  font-size: clamp(3.4rem, 8vw, 6.6rem);
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+}
+
+.font-display {
+  font-family: 'Ortland', sans-serif;
+}
+
+/* NAVBAR */
+.site-nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  transition: background-color 0.35s ease, box-shadow 0.35s ease, backdrop-filter 0.35s ease;
+}
+
+.site-nav.scrolled {
+  background-color: rgba(39, 39, 39, 0.88);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06), 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.nav-logo {
+  filter: drop-shadow(0 0 10px rgba(210, 62, 142, 0.35));
+  transition: transform 0.3s ease;
+}
+
+.nav-logo:hover {
+  transform: rotate(-6deg) scale(1.05);
+}
+
+.nav-link {
+  position: relative;
+  padding: 6px 0;
+  transition: color 0.2s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: #d23e8e;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #f9a8d4;
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* HERO */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(10, 10, 11, 0.85) 0%, rgba(10, 10, 11, 0.45) 60%, rgba(10, 10, 11, 0.7) 100%);
+}
+
+.hero-glow {
+  position: absolute;
+  right: -10%;
+  top: 50%;
+  width: 60vw;
+  height: 60vw;
+  max-width: 800px;
+  max-height: 800px;
+  transform: translateY(-50%);
+  background: radial-gradient(circle, rgba(210, 62, 142, 0.28), transparent 62%);
+  pointer-events: none;
+}
+
+.hero-logo {
+  filter: drop-shadow(0 25px 50px rgba(210, 62, 142, 0.35));
+  animation: float 6s ease-in-out infinite;
+}
+
+.logo-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 82%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px dashed rgba(210, 62, 142, 0.35);
+  animation: spin 40s linear infinite;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 30px;
+  border-radius: 999px;
+  background: #d23e8e;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(210, 62, 142, 0.35);
+  transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-primary:hover {
+  background: #b02f74;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(210, 62, 142, 0.5);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  padding: 16px 30px;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.btn-outline:hover {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.scroll-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 46px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.scroll-hint span {
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  width: 4px;
+  height: 8px;
+  margin-left: -2px;
+  border-radius: 4px;
+  background: #d23e8e;
+  animation: scroll-dot 1.8s ease-in-out infinite;
+}
+
+/* FAIXA */
+.marquee {
+  overflow: hidden;
+  background: #d23e8e;
+  padding: 14px 0;
+  border-block: 2px solid #000;
+}
+
+.marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.marquee-track span {
+  font-size: 2rem;
+  line-height: 1;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.marquee-track img {
+  filter: brightness(0) invert(1);
+}
+
+/* TATUADORES */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #f472b6;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 2px;
+  background: #d23e8e;
+}
+
+.artist-card {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 24px;
+  background: #1f1f1f;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  outline: 2px solid transparent;
+  outline-offset: -2px;
+  transition: transform 0.4s ease, outline-color 0.4s ease;
+}
+
+.artist-card:hover {
+  transform: translateY(-6px);
+  outline-color: rgba(210, 62, 142, 0.7);
+}
+
+.artist-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(35%);
+  transition: transform 0.7s ease, filter 0.7s ease;
+}
+
+.artist-card:hover .artist-photo {
+  transform: scale(1.06);
+  filter: grayscale(0%);
+}
+
+.quote-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 28px 32px;
+  border-radius: 24px;
+  background: linear-gradient(120deg, rgba(210, 62, 142, 0.16), rgba(255, 255, 255, 0.03));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* RODAPÉ */
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.875rem;
+  color: #d1d5db;
+  transition: color 0.2s ease;
+}
+
+.social-link:hover {
+  color: #f472b6;
+}
+
+/* ANIMAÇÕES */
+.fade-up {
+  animation: fade-up 0.8s ease both;
+}
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-18px) rotate(2deg); }
+}
+
+@keyframes spin {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+@keyframes scroll-dot {
+  0% { opacity: 0; transform: translateY(0); }
+  40% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(16px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-logo,
+  .logo-ring,
+  .marquee-track,
+  .fade-up {
+    animation: none;
+  }
+}

@@ -1,0 +1,111 @@
+<div class="chat-page flex h-screen flex-col text-white">
+  <header class="chat-header flex-shrink-0">
+    <div class="mx-auto flex max-w-4xl items-center justify-between gap-4">
+      <div class="flex items-center gap-4">
+        <button routerLink="/"
+          class="flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold transition-all duration-200 hover:border-brand hover:bg-brand">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+          </svg>
+          <span class="hidden sm:inline">Voltar</span>
+        </button>
+        <div>
+          <p class="text-[11px] font-bold tracking-[0.25em] text-pink-400 uppercase">Passione Tattoo Studio</p>
+          <h1 class="text-xl font-extrabold md:text-2xl">Chat para Agendamento</h1>
+        </div>
+      </div>
+      <img src="images/Logo-Cor.png" alt="Logo" class="logo-glow h-10 md:h-12" />
+    </div>
+  </header>
+
+  <main class="flex min-h-0 flex-1 items-center justify-center p-3 md:p-6">
+    <div class="flex h-full max-h-full w-full max-w-4xl flex-col overflow-hidden rounded-3xl border border-white/10 bg-[#1e1e1f]/90 shadow-2xl backdrop-blur">
+
+      <div class="flex flex-shrink-0 items-center justify-between border-b border-white/10 px-5 py-4">
+        <div class="flex items-center gap-3">
+          <div class="relative">
+            <div class="flex h-11 w-11 items-center justify-center rounded-full bg-brand/15 ring-2 ring-brand/60">
+              <img src="images/Logo-Cor.png" alt="" class="h-7 w-auto" />
+            </div>
+            <span class="status-online absolute right-0 bottom-0 h-3 w-3 rounded-full border-2 border-[#1e1e1f] bg-green-400"></span>
+          </div>
+          <div>
+            <p class="font-semibold">Atendimento Automatizado</p>
+            <p class="text-xs text-green-400">Online</p>
+          </div>
+        </div>
+        <span class="hidden rounded-full bg-white/5 px-3 py-1 text-xs text-gray-400 sm:inline">Respostas em segundos</span>
+      </div>
+
+      <div class="messages-container min-h-0 flex-1 space-y-4 overflow-y-auto px-4 py-6 md:px-6" #messagesContainer>
+
+        <div *ngIf="messages.length === 0" class="flex h-full flex-col items-center justify-center text-center">
+          <img src="images/Logo-Cor.png" alt="" class="mascot mb-5 h-24 w-auto opacity-90" />
+          <h2 class="text-2xl font-bold">Bora tatuar?</h2>
+          <p class="mt-2 max-w-sm text-sm text-gray-400">
+            Conte sua ideia, o tatuador que você quer e se já tem a arte pronta. A gente cuida do resto.
+          </p>
+        </div>
+
+        <div *ngFor="let message of messages; trackBy: trackByMessageId"
+             class="message-enter"
+             [class]="message.isUser ? 'flex justify-end' : 'flex justify-start'">
+          <div [class]="getMessageClasses(message.isUser)" class="message-bubble relative">
+            <div class="text-sm leading-relaxed">{{ message.text }}</div>
+            <div class="mt-1 flex items-center justify-end space-x-1 text-[10px] opacity-70">
+              <span>{{ message.timestamp | date:'HH:mm' }}</span>
+              <span *ngIf="message.isUser" class="text-xs">
+                <svg *ngIf="message.status === 'sending'" class="h-3 w-3 animate-spin" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2a10 10 0 0 0-10 10h2a8 8 0 0 1 8-8V2z"/>
+                </svg>
+                <svg *ngIf="message.status === 'sent'" class="h-3 w-3" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                </svg>
+                <svg *ngIf="message.status === 'delivered'" class="h-3 w-3" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M18 7l-1.41-1.41-6.34 6.34 1.41 1.41L18 7zm4.24-1.41L11.66 16H20v2h-8.34l10.24-10.24-1.42-1.41z"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="isTyping" class="flex justify-start">
+          <div class="rounded-2xl rounded-bl-md bg-[#2c2c2e] px-4 py-3">
+            <div class="flex items-center space-x-1">
+              <div class="h-2 w-2 animate-bounce rounded-full bg-pink-400"></div>
+              <div class="h-2 w-2 animate-bounce rounded-full bg-pink-400" style="animation-delay: 0.1s"></div>
+              <div class="h-2 w-2 animate-bounce rounded-full bg-pink-400" style="animation-delay: 0.2s"></div>
+              <span class="ml-2 text-xs text-gray-400">Digitando...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex-shrink-0 border-t border-white/10 bg-black/30 p-3 md:p-4">
+        <div class="flex items-center gap-2">
+          <input type="text"
+                 [(ngModel)]="newMessage"
+                 (keyup.enter)="sendMessage()"
+                 (input)="onInputChange()"
+                 placeholder="Digite sua mensagem..."
+                 class="chat-input flex-1 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm text-white placeholder-gray-500 transition-all duration-200 outline-none focus:border-brand"
+                 maxlength="500"
+                 #messageInput />
+          <button (click)="sendMessage()"
+                  [disabled]="!newMessage.trim()"
+                  [class]="getButtonClasses()"
+                  class="send-button"
+                  aria-label="Enviar">
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="mt-2 text-right text-xs text-pink-300" *ngIf="newMessage.length > 400">
+          {{ newMessage.length }}/500
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

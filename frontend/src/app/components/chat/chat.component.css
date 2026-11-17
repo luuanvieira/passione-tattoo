@@ -1,0 +1,233 @@
+.message-enter {
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.messages-container {
+  scrollbar-width: thin;
+  scrollbar-color: #6b7280 #374151;
+}
+
+.messages-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.messages-container::-webkit-scrollbar-track {
+  background: #374151;
+  border-radius: 3px;
+}
+
+.messages-container::-webkit-scrollbar-thumb {
+  background: #6b7280;
+  border-radius: 3px;
+}
+
+.messages-container::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+.status-online {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.chat-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(236, 72, 153, 0.3);
+}
+
+.send-button:disabled {
+  transform: scale(0.95);
+}
+
+.message-status {
+  font-size: 10px;
+  opacity: 0.6;
+  margin-top: 2px;
+}
+
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+}
+
+.typing-dots {
+  display: flex;
+  gap: 4px;
+}
+
+.typing-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #9ca3af;
+  border-radius: 50%;
+  animation: typing 1.4s infinite;
+}
+
+.typing-dot:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typing {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+  }
+
+  30% {
+    transform: translateY(-10px);
+  }
+}
+
+.gray-custom {
+  background-color: #272727;
+}
+
+.message-bubble {
+  transition: all 0.2s ease-in-out;
+}
+
+.message-bubble:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.send-button {
+  transition: all 0.2s ease-in-out;
+}
+
+.send-button:hover:not(:disabled) {
+  transform: scale(1.05);
+}
+
+.send-button:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.input-field {
+  transition: all 0.2s ease-in-out;
+}
+
+
+
+.typing-indicator {
+  background: linear-gradient(90deg, #6b7280, #9ca3af);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+header {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  
+  header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .message-bubble {
+    max-width: 85%;
+  }
+}
+
+@media (max-width: 640px) {
+  
+  header h1 {
+    font-size: 1.25rem;
+  }
+  
+  .message-bubble {
+    max-width: 90%;
+    font-size: 14px;
+  }
+
+  .input-field {
+    font-size: 16px;
+  }
+}
+
+
+
+/* Identidade Passione */
+.chat-page {
+  background-color: #161617;
+  background-image:
+    radial-gradient(circle at 85% 0%, rgba(210, 62, 142, 0.18), transparent 45%),
+    linear-gradient(rgba(10, 10, 11, 0.75), rgba(10, 10, 11, 0.85)),
+    url('./../../../../public/images/Header-Background.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.chat-header {
+  padding: 14px 16px;
+  background: rgba(39, 39, 39, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.logo-glow {
+  filter: drop-shadow(0 0 10px rgba(210, 62, 142, 0.4));
+}
+
+.mascot {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.messages-container {
+  scrollbar-color: #d23e8e transparent;
+}
+
+.messages-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.messages-container::-webkit-scrollbar-thumb {
+  background: rgba(210, 62, 142, 0.6);
+}

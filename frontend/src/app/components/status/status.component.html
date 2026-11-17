@@ -1,0 +1,69 @@
+<div class="status-page min-h-screen gray-custom">
+    <header class="status-header">
+        <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4">
+            <div class="flex items-center gap-4">
+                <img src="images/Logo-Cor.png" alt="Logo" class="logo-glow h-12 w-auto" />
+                <div>
+                    <p class="text-[11px] font-bold tracking-[0.25em] text-pink-400 uppercase">Passione Tattoo Studio</p>
+                    <h1 class="text-xl font-bold tracking-wider text-white md:text-2xl">STATUS DO SERVIÇO</h1>
+                </div>
+            </div>
+            <button (click)="sair()"
+                class="flex items-center gap-2 rounded-full bg-pink-500 px-6 py-2 font-medium text-white transition-colors hover:bg-pink-600">
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 17l5-5-5-5M20 12H9M12 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7" />
+                </svg>
+                Sair
+            </button>
+        </div>
+    </header>
+
+    <main class="mx-auto max-w-6xl px-5 py-8">
+        <div class="mb-6 flex flex-wrap items-end justify-between gap-3">
+            <div>
+                <h2 class="text-3xl font-bold text-white">Solicitações de agendamento</h2>
+                <p class="mt-1 text-sm text-gray-400">Clientes que conversaram com o atendimento automatizado.</p>
+            </div>
+            <span class="rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-gray-300">
+                {{ clientContacts.length }} {{ clientContacts.length === 1 ? 'cliente' : 'clientes' }}
+            </span>
+        </div>
+
+        <div *ngIf="clientContacts.length === 0" class="flex flex-col items-center rounded-3xl border border-dashed border-white/15 py-20 text-center">
+            <img src="images/Logo-Cor.png" alt="" class="mascot mb-5 h-20 w-auto opacity-80" />
+            <h3 class="text-xl font-semibold text-white">Nenhuma solicitação por enquanto</h3>
+            <p class="mt-1 text-sm text-gray-400">Assim que alguém agendar pelo chat, aparece aqui.</p>
+        </div>
+
+        <div class="grid gap-4 lg:grid-cols-2">
+            <div *ngFor="let usuario of clientContacts"
+                class="status-card fade-in flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-[#1f1f20] p-5 shadow-lg hover:border-pink-500/50 hover:shadow-xl">
+                <div class="flex items-center gap-4">
+                    <div class="avatar-ring flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-pink-500 text-xl font-bold text-white uppercase">
+                        {{ usuario.client_name.charAt(0) }}
+                    </div>
+                    <div class="min-w-0">
+                        <h3 class="truncate text-lg font-bold text-white">{{ usuario.client_name }}</h3>
+                        <p class="text-sm text-gray-300">Tatuador: <span class="text-pink-400">{{ usuario.tattoo_artist_wanted }}</span></p>
+                        <p class="text-xs text-gray-400">{{ usuario.client_number }}</p>
+                        <p class="mt-1 text-xs text-green-400" *ngIf="usuario.have_art">✓ Arte pronta</p>
+                        <p class="mt-1 text-xs text-orange-400" *ngIf="!usuario.have_art">⚠ Arte pendente</p>
+                    </div>
+                </div>
+                <div class="flex shrink-0 flex-col items-end gap-2">
+                    <span class="rounded-full bg-white/5 px-3 py-1 text-xs font-semibold" [ngClass]="getStatusColor(usuario.status)">
+                        {{ getStatusText(usuario.status) }}
+                    </span>
+                    <button class="rounded-full p-2 transition-colors hover:bg-white/10" (click)="refreshStatus(usuario)"
+                        title="Atualizar status" aria-label="Atualizar status">
+                        <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
